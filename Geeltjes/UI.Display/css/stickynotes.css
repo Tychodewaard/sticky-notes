@@ -1,0 +1,180 @@
+﻿/*
+ * Sticky Notes module base styles
+ */
+
+.StickyNotes {
+    position: relative;
+    height: 800px;
+    margin-top: 72px;
+    color: #000;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Buttons */
+
+.StickyNotes-button,
+.StickyNotes-button:link,
+.StickyNotes-button:visited {
+    display: inline-block;
+    padding: .75em;
+    border-radius: .2em;
+    background-color: #3498db;
+    color: #fff;
+    cursor: pointer;
+    font-size: inherit;
+    line-height: 1;
+    text-decoration: none;
+}
+
+.StickyNotes-canvas .StickyNotes-button {
+    position: absolute;
+    top: -56px;
+    left: 0;
+}
+
+.StickyNotes-editor .StickyNotes-button {
+    margin-top: 16px;
+}
+
+.StickyNotes-button:hover {
+    background-color: #2980b9;
+    color: #fff;
+    text-decoration: none;
+}
+
+.StickyNotes .note {
+    display: flex;
+    flex-direction: column;
+    width: 240px;
+    height: 240px;
+    padding: 16px;
+    border: none !important;
+}
+
+.StickyNotes .note .body {
+    flex: 1;
+}
+
+.StickyNotes .note.yellow {
+    background-color: #f1c40f;
+}
+
+.StickyNotes .note.blue {
+    background-color: #3498db;
+}
+
+.StickyNotes .note.green {
+    background-color: #2ecc71;
+}
+
+.StickyNotes .button-container {
+    margin-top: 16px;
+}
+
+.StickyNotes .button-container,
+.StickyNotes .control-container,
+.StickyNotes .thumbs-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.StickyNotes .thumbs-container[style*="block"] {
+    display: flex !important;
+}
+
+.StickyNotes .control,
+.StickyNotes .thumbs {
+    display: block;
+    width: 24px;
+    height: 24px;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    color: transparent;
+    cursor: pointer;
+    font: 0/0 a;
+}
+
+/* Controls */
+
+.StickyNotes .control.edit {
+    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iRWRpdCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCAyMCAyMCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMjAgMjAiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxwYXRoIGZpbGw9IiMwMDAwMDAiIGQ9Ik0xNy41NjEsMi40MzljLTEuNDQyLTEuNDQzLTIuNTI1LTEuMjI3LTIuNTI1LTEuMjI3TDguOTg0LDcuMjY0TDIuMjEsMTQuMDM3TDEuMiwxOC43OTlsNC43NjMtMS4wMWw2Ljc3NC02Ljc3MWw2LjA1Mi02LjA1MkMxOC43ODgsNC45NjYsMTkuMDA1LDMuODgzLDE3LjU2MSwyLjQzOXogTTUuNjgsMTcuMjE3bC0xLjYyNCwwLjM1Yy0wLjE1Ni0wLjI5My0wLjM0NS0wLjU4Ni0wLjY5LTAuOTMyYy0wLjM0Ni0wLjM0Ni0wLjYzOS0wLjUzMy0wLjkzMi0wLjY5MWwwLjM1LTEuNjIzbDAuNDctMC40NjljMCwwLDAuODgzLDAuMDE4LDEuODgxLDEuMDE2YzAuOTk3LDAuOTk2LDEuMDE2LDEuODgxLDEuMDE2LDEuODgxTDUuNjgsMTcuMjE3eiIvPjwvc3ZnPg==);
+}
+
+.StickyNotes .control.delete {
+    margin-left: 8px;
+    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iVHJhc2giIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cGF0aCBmaWxsPSIjMDAwMDAwIiBkPSJNMy4zODksNy4xMTNMNC40OSwxOC4wMjFDNC41NTEsMTguNDgyLDYuNzc3LDE5Ljk5OCwxMCwyMGMzLjIyNS0wLjAwMiw1LjQ1MS0xLjUxOCw1LjUxMS0xLjk3OWwxLjEwMi0xMC45MDhDMTQuOTI5LDguMDU1LDEyLjQxMiw4LjUsMTAsOC41QzcuNTksOC41LDUuMDcyLDguMDU1LDMuMzg5LDcuMTEzeiBNMTMuMTY4LDEuNTFsLTAuODU5LTAuOTUxQzExLjk3NywwLjA4NiwxMS42MTcsMCwxMC45MTYsMEg5LjA4NWMtMC43LDAtMS4wNjEsMC4wODYtMS4zOTIsMC41NTlMNi44MzQsMS41MUM0LjI2NCwxLjk1OSwyLjQsMy4xNSwyLjQsNC4wMjl2MC4xN0MyLjQsNS43NDYsNS44MDMsNywxMCw3YzQuMTk4LDAsNy42MDEtMS4yNTQsNy42MDEtMi44MDF2LTAuMTdDMTcuNjAxLDMuMTUsMTUuNzM4LDEuOTU5LDEzLjE2OCwxLjUxeiBNMTIuMDcsNC4zNEwxMSwzSDlMNy45MzIsNC4zNGgtMS43YzAsMCwxLjg2Mi0yLjIyMSwyLjExMS0yLjUyMkM4LjUzMywxLjU4OCw4LjcyNywxLjUsOC45NzksMS41aDIuMDQzYzAuMjUzLDAsMC40NDcsMC4wODgsMC42MzcsMC4zMThDMTEuOTA3LDIuMTE5LDEzLjc3LDQuMzQsMTMuNzcsNC4zNEgxMi4wN3oiLz48L3N2Zz4=);
+}
+
+/* Thumbs */
+
+.StickyNotes .thumbs.up {
+    margin-right: 4px;
+    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iVGh1bWJzX3VwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDIwIDIwIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCAyMCAyMCIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PHBhdGggZmlsbD0iIzAwMDAwMCIgZD0iTTEzLjY0OCw3LjM2MmMtMC4xMzMtMC4zNTUsMy41MzktMy42MzQsMS4zOTgtNi4yOTFjLTAuNTAxLTAuNjIxLTIuMjAxLDIuOTc1LTQuNjE1LDQuNjAzQzkuMDk5LDYuNTcyLDYsOC40ODQsNiw5LjU0MXY2Ljg0MkM2LDE3LjY1NCwxMC45MTQsMTksMTQuNjQ4LDE5QzE2LjAxNywxOSwxOCwxMC40MjQsMTgsOS4wNjJDMTgsNy42OTQsMTMuNzc5LDcuNzE4LDEzLjY0OCw3LjM2MnogTTUsNy40NTdjLTAuNjU4LDAtMywwLjQtMywzLjEyM3Y0Ljg0OGMwLDIuNzIxLDIuMzQyLDMuMDIxLDMsMy4wMjFjMC42NTcsMC0xLTAuNTcyLTEtMi4yNlY5LjgxNkM0LDguMDQ4LDUuNjU3LDcuNDU3LDUsNy40NTd6Ii8+PC9zdmc+);
+}
+
+.StickyNotes .thumbs.down {
+    margin-right: 4px;
+    margin-left: 8px;
+    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iVGh1bWJzX2Rvd24iIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cGF0aCBmaWxsPSIjMDAwMDAwIiBkPSJNNi4zNTIsMTIuNjM4YzAuMTMzLDAuMzU2LTMuNTM5LDMuNjM0LTEuMzk3LDYuMjkxYzAuNTAxLDAuNjIxLDIuMjAxLTIuOTc1LDQuNjE1LTQuNjAyYzEuMzMxLTAuODk5LDQuNDMtMi44MTEsNC40My0zLjg2OFYzLjYxN0MxNCwyLjM0Niw5LjA4NiwxLDUuMzUyLDFDMy45ODMsMSwyLDkuNTc2LDIsMTAuOTM5QzIsMTIuMzA2LDYuMjIxLDEyLjI4Miw2LjM1MiwxMi42Mzh6IE0xNSwxMi41NDNjMC42NTgsMCwzLTAuNCwzLTMuMTIzVjQuNTcyYzAtMi43MjEtMi4zNDItMy4wMjEtMy0zLjAyMWMtMC42NTcsMCwxLDAuNTcyLDEsMi4yNnY2LjM3M0MxNiwxMS45NTIsMTQuMzQzLDEyLjU0MywxNSwxMi41NDN6Ii8+PC9zdmc+);
+}
+
+/* Editor */
+
+.StickyNotes-editor {
+    overflow: hidden;
+    width: 920px;
+    max-width: 80vw;
+}
+
+.StickyNotes-editor .note,
+.StickyNotes-editor .noteData {
+    float: left;
+}
+
+.StickyNotes-editor h3 {
+    width: 100%;
+}
+
+.StickyNotes-editor label {
+    display: block;
+}
+
+.StickyNotes-editor label ~ label {
+    margin-top: 24px;
+}
+
+.StickyNotes-editor input,
+.StickyNotes-editor textarea {
+    width: 320px;
+    padding: 8px;
+    border: 1px solid #7f8c8d;
+}
+
+.StickyNotes-editor .noteData {
+    flex: 1;
+    margin-left: 32px;
+}
+
+/* Colors */
+
+.StickyNotes-editor .color {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.StickyNotes-editor .color.yellow {
+    background-color: #f1c40f;
+}
+
+.StickyNotes-editor .color.blue {
+    background-color: #3498db;
+}
+
+.StickyNotes-editor .color.green {
+    background-color: #2ecc71;
+}

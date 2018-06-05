@@ -1,0 +1,31 @@
+CREATE TABLE [dbo].[Icatt_Geeltjes_Geeltje](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[ModuleId] [int] NOT NULL,
+	[Text] [nvarchar](255) NOT NULL,
+	[Name] [nvarchar](60) NOT NULL,
+	[Color] [nvarchar](50) NOT NULL,
+	[Xyz] [varchar](20) NOT NULL,
+	[CreatedAt] [datetime] NOT NULL CONSTRAINT [DF_Icatt_Geeltjes_Geeltje_CreatedAt]  DEFAULT (getdate()),
+	[CreatedByUserId] [int] NOT NULL,
+	[ThumbUpCount] [int] NULL,
+	[ThumbDownCount] [int] NULL,
+ CONSTRAINT [PK_Icatt_Geeltjes_Geeltje] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)
+)
+GO
+
+CREATE TABLE [dbo].[Icatt_Geeltjes_UserGeeltje](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[GeeltjeId] [int] NOT NULL,
+	[UserId] [int] NOT NULL,
+	[ThumbUp] [int] NULL,
+	[ThumbDown] [int] NULL,
+ CONSTRAINT [PK_Icatt_Geeltjes_UserGeeltje] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)
+)
+
+GO

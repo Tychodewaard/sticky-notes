@@ -1,0 +1,374 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="GeeltjesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Icatt_Geeltjes_Geeltje">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ModuleId" Type="int" Nullable="false" />
+          <Property Name="Text" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="Color" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Xyz" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+          <Property Name="CreatedByUserId" Type="int" Nullable="false" />
+          <Property Name="ThumbUpCount" Type="int" />
+          <Property Name="ThumbDownCount" Type="int" />
+        </EntityType>
+        <EntityType Name="Icatt_Geeltjes_UserGeeltje">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GeeltjeId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="ThumbUp" Type="int" />
+          <Property Name="ThumbDown" Type="int" />
+        </EntityType>
+        <EntityType Name="Modules">
+          <Key>
+            <PropertyRef Name="ModuleID" />
+          </Key>
+          <Property Name="ModuleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ModuleDefID" Type="int" Nullable="false" />
+          <Property Name="AllTabs" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="InheritViewPermissions" Type="bit" />
+          <Property Name="StartDate" Type="datetime" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="PortalID" Type="int" />
+          <Property Name="CreatedByUserID" Type="int" />
+          <Property Name="CreatedOnDate" Type="datetime" />
+          <Property Name="LastModifiedByUserID" Type="int" />
+          <Property Name="LastModifiedOnDate" Type="datetime" />
+          <Property Name="LastContentModifiedOnDate" Type="datetime" />
+          <Property Name="ContentItemID" Type="int" />
+          <Property Name="IsShareable" Type="bit" Nullable="false" />
+          <Property Name="IsShareableViewOnly" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsSuperUser" Type="bit" Nullable="false" />
+          <Property Name="AffiliateId" Type="int" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="DisplayName" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UpdatePassword" Type="bit" Nullable="false" />
+          <Property Name="LastIPAddress" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedByUserID" Type="int" />
+          <Property Name="CreatedOnDate" Type="datetime" />
+          <Property Name="LastModifiedByUserID" Type="int" />
+          <Property Name="LastModifiedOnDate" Type="datetime" />
+          <Property Name="PasswordResetToken" Type="uniqueidentifier" />
+          <Property Name="PasswordResetExpiration" Type="datetime" />
+          <Property Name="LowerEmail" Type="nvarchar" MaxLength="256" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <Association Name="FK_Icatt_Geeltjes_Geeltje_Modules">
+          <End Role="Modules" Type="Self.Modules" Multiplicity="1" />
+          <End Role="Icatt_Geeltjes_Geeltje" Type="Self.Icatt_Geeltjes_Geeltje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modules">
+              <PropertyRef Name="ModuleID" />
+            </Principal>
+            <Dependent Role="Icatt_Geeltjes_Geeltje">
+              <PropertyRef Name="ModuleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GeeltjesModelStoreContainer">
+          <EntitySet Name="Icatt_Geeltjes_Geeltje" EntityType="Self.Icatt_Geeltjes_Geeltje" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Icatt_Geeltjes_UserGeeltje" EntityType="Self.Icatt_Geeltjes_UserGeeltje" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Modules" EntityType="Self.Modules" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Icatt_Geeltjes_Geeltje_Modules" Association="Self.FK_Icatt_Geeltjes_Geeltje_Modules">
+            <End Role="Modules" EntitySet="Modules" />
+            <End Role="Icatt_Geeltjes_Geeltje" EntitySet="Icatt_Geeltjes_Geeltje" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GeeltjesModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+        <EntityContainer Name="GeeltjesEntities" annotation:LazyLoadingEnabled="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+          <EntitySet Name="Icatt_Geeltjes_Geeltje" EntityType="GeeltjesModel.Icatt_Geeltjes_Geeltje" />
+          <EntitySet Name="Icatt_Geeltjes_UserGeeltje" EntityType="GeeltjesModel.Icatt_Geeltjes_UserGeeltje" />
+          <EntitySet Name="Users" EntityType="GeeltjesModel.Users" />
+          <AssociationSet Name="Icatt_Geeltjes_GeeltjeIcatt_Geeltjes_UserGeeltje" Association="GeeltjesModel.Icatt_Geeltjes_GeeltjeIcatt_Geeltjes_UserGeeltje">
+            <End Role="Icatt_Geeltjes_Geeltje" EntitySet="Icatt_Geeltjes_Geeltje" />
+            <End Role="Icatt_Geeltjes_UserGeeltje" EntitySet="Icatt_Geeltjes_UserGeeltje" />
+          </AssociationSet>
+          <AssociationSet Name="UsersIcatt_Geeltjes_UserGeeltje" Association="GeeltjesModel.UsersIcatt_Geeltjes_UserGeeltje">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Icatt_Geeltjes_UserGeeltje" EntitySet="Icatt_Geeltjes_UserGeeltje" />
+          </AssociationSet>
+          <AssociationSet Name="UsersIcatt_Geeltjes_Geeltje" Association="GeeltjesModel.UsersIcatt_Geeltjes_Geeltje">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Icatt_Geeltjes_Geeltje" EntitySet="Icatt_Geeltjes_Geeltje" />
+          </AssociationSet>
+          <EntitySet Name="Modules" EntityType="GeeltjesModel.Modules" />
+          <AssociationSet Name="FK_Icatt_Geeltjes_Geeltje_Modules" Association="GeeltjesModel.FK_Icatt_Geeltjes_Geeltje_Modules">
+            <End Role="Modules" EntitySet="Modules" />
+            <End Role="Icatt_Geeltjes_Geeltje" EntitySet="Icatt_Geeltjes_Geeltje" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Icatt_Geeltjes_Geeltje">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Text" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Color" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Xyz" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CreatedAt" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="CreatedByUserId" Nullable="false" />
+          <Property Type="Int32" Name="ThumbUpCount" />
+          <Property Type="Int32" Name="ThumbDownCount" />
+          <NavigationProperty Name="Icatt_Geeltjes_UserGeeltje" Relationship="GeeltjesModel.Icatt_Geeltjes_GeeltjeIcatt_Geeltjes_UserGeeltje" FromRole="Icatt_Geeltjes_Geeltje" ToRole="Icatt_Geeltjes_UserGeeltje" />
+          <NavigationProperty Name="Users" Relationship="GeeltjesModel.UsersIcatt_Geeltjes_Geeltje" FromRole="Icatt_Geeltjes_Geeltje" ToRole="Users" />
+          <Property Type="Int32" Name="ModuleId" Nullable="false" />
+          <NavigationProperty Name="Modules" Relationship="GeeltjesModel.FK_Icatt_Geeltjes_Geeltje_Modules" FromRole="Icatt_Geeltjes_Geeltje" ToRole="Modules" />
+        </EntityType>
+        <EntityType Name="Icatt_Geeltjes_UserGeeltje">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="GeeltjeId" Nullable="false" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="Int32" Name="ThumbUp" />
+          <Property Type="Int32" Name="ThumbDown" />
+          <NavigationProperty Name="Icatt_Geeltjes_Geeltje" Relationship="GeeltjesModel.Icatt_Geeltjes_GeeltjeIcatt_Geeltjes_UserGeeltje" FromRole="Icatt_Geeltjes_UserGeeltje" ToRole="Icatt_Geeltjes_Geeltje" />
+          <NavigationProperty Name="Users" Relationship="GeeltjesModel.UsersIcatt_Geeltjes_UserGeeltje" FromRole="Icatt_Geeltjes_UserGeeltje" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Type="Int32" Name="UserID" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Username" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsSuperUser" Nullable="false" />
+          <Property Type="Int32" Name="AffiliateId" />
+          <Property Type="String" Name="Email" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DisplayName" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="UpdatePassword" Nullable="false" />
+          <Property Type="String" Name="LastIPAddress" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsDeleted" Nullable="false" />
+          <Property Type="Int32" Name="CreatedByUserID" />
+          <Property Type="DateTime" Name="CreatedOnDate" Precision="3" />
+          <Property Type="Int32" Name="LastModifiedByUserID" />
+          <Property Type="DateTime" Name="LastModifiedOnDate" Precision="3" />
+          <NavigationProperty Name="Icatt_Geeltjes_UserGeeltje" Relationship="GeeltjesModel.UsersIcatt_Geeltjes_UserGeeltje" FromRole="Users" ToRole="Icatt_Geeltjes_UserGeeltje" />
+          <NavigationProperty Name="Icatt_Geeltjes_Geeltje" Relationship="GeeltjesModel.UsersIcatt_Geeltjes_Geeltje" FromRole="Users" ToRole="Icatt_Geeltjes_Geeltje" />
+          <Property Name="PasswordResetToken" Type="Guid" />
+          <Property Name="PasswordResetExpiration" Type="DateTime" Precision="3" />
+          <Property Name="LowerEmail" Type="String" MaxLength="256" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <Association Name="Icatt_Geeltjes_GeeltjeIcatt_Geeltjes_UserGeeltje">
+          <End Type="GeeltjesModel.Icatt_Geeltjes_Geeltje" Role="Icatt_Geeltjes_Geeltje" Multiplicity="1" />
+          <End Type="GeeltjesModel.Icatt_Geeltjes_UserGeeltje" Role="Icatt_Geeltjes_UserGeeltje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Icatt_Geeltjes_Geeltje">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Icatt_Geeltjes_UserGeeltje">
+              <PropertyRef Name="GeeltjeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UsersIcatt_Geeltjes_UserGeeltje">
+          <End Type="GeeltjesModel.Users" Role="Users" Multiplicity="1" />
+          <End Type="GeeltjesModel.Icatt_Geeltjes_UserGeeltje" Role="Icatt_Geeltjes_UserGeeltje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Icatt_Geeltjes_UserGeeltje">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UsersIcatt_Geeltjes_Geeltje">
+          <End Type="GeeltjesModel.Users" Role="Users" Multiplicity="1" />
+          <End Type="GeeltjesModel.Icatt_Geeltjes_Geeltje" Role="Icatt_Geeltjes_Geeltje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Icatt_Geeltjes_Geeltje">
+              <PropertyRef Name="CreatedByUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Modules">
+          <Key>
+            <PropertyRef Name="ModuleID" />
+          </Key>
+          <Property Type="Int32" Name="ModuleID" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="ModuleDefID" Nullable="false" />
+          <Property Type="Boolean" Name="AllTabs" Nullable="false" />
+          <Property Type="Boolean" Name="IsDeleted" Nullable="false" />
+          <Property Type="Boolean" Name="InheritViewPermissions" />
+          <Property Type="DateTime" Name="StartDate" Precision="3" />
+          <Property Type="DateTime" Name="EndDate" Precision="3" />
+          <Property Type="Int32" Name="PortalID" />
+          <Property Type="Int32" Name="CreatedByUserID" />
+          <Property Type="DateTime" Name="CreatedOnDate" Precision="3" />
+          <Property Type="Int32" Name="LastModifiedByUserID" />
+          <Property Type="DateTime" Name="LastModifiedOnDate" Precision="3" />
+          <Property Type="Int32" Name="ContentItemID" />
+          <NavigationProperty Name="Icatt_Geeltjes_Geeltje" Relationship="GeeltjesModel.FK_Icatt_Geeltjes_Geeltje_Modules" FromRole="Modules" ToRole="Icatt_Geeltjes_Geeltje" />
+          <Property Name="LastContentModifiedOnDate" Type="DateTime" Precision="3" />
+          <Property Name="IsShareable" Type="Boolean" Nullable="false" />
+          <Property Name="IsShareableViewOnly" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Icatt_Geeltjes_Geeltje_Modules">
+          <End Type="GeeltjesModel.Modules" Role="Modules" Multiplicity="1" />
+          <End Type="GeeltjesModel.Icatt_Geeltjes_Geeltje" Role="Icatt_Geeltjes_Geeltje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modules">
+              <PropertyRef Name="ModuleID" />
+            </Principal>
+            <Dependent Role="Icatt_Geeltjes_Geeltje">
+              <PropertyRef Name="ModuleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GeeltjesModelStoreContainer" CdmEntityContainer="GeeltjesEntities">
+          <EntitySetMapping Name="Icatt_Geeltjes_Geeltje">
+            <EntityTypeMapping TypeName="GeeltjesModel.Icatt_Geeltjes_Geeltje">
+              <MappingFragment StoreEntitySet="Icatt_Geeltjes_Geeltje">
+                <ScalarProperty Name="ModuleId" ColumnName="ModuleId" />
+                <ScalarProperty Name="ThumbDownCount" ColumnName="ThumbDownCount" />
+                <ScalarProperty Name="ThumbUpCount" ColumnName="ThumbUpCount" />
+                <ScalarProperty Name="CreatedByUserId" ColumnName="CreatedByUserId" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="Xyz" ColumnName="Xyz" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Icatt_Geeltjes_UserGeeltje">
+            <EntityTypeMapping TypeName="GeeltjesModel.Icatt_Geeltjes_UserGeeltje">
+              <MappingFragment StoreEntitySet="Icatt_Geeltjes_UserGeeltje">
+                <ScalarProperty Name="ThumbDown" ColumnName="ThumbDown" />
+                <ScalarProperty Name="ThumbUp" ColumnName="ThumbUp" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="GeeltjeId" ColumnName="GeeltjeId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="GeeltjesModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="LowerEmail" ColumnName="LowerEmail" />
+                <ScalarProperty Name="PasswordResetExpiration" ColumnName="PasswordResetExpiration" />
+                <ScalarProperty Name="PasswordResetToken" ColumnName="PasswordResetToken" />
+                <ScalarProperty Name="LastModifiedOnDate" ColumnName="LastModifiedOnDate" />
+                <ScalarProperty Name="LastModifiedByUserID" ColumnName="LastModifiedByUserID" />
+                <ScalarProperty Name="CreatedOnDate" ColumnName="CreatedOnDate" />
+                <ScalarProperty Name="CreatedByUserID" ColumnName="CreatedByUserID" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="LastIPAddress" ColumnName="LastIPAddress" />
+                <ScalarProperty Name="UpdatePassword" ColumnName="UpdatePassword" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="AffiliateId" ColumnName="AffiliateId" />
+                <ScalarProperty Name="IsSuperUser" ColumnName="IsSuperUser" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Modules">
+            <EntityTypeMapping TypeName="GeeltjesModel.Modules">
+              <MappingFragment StoreEntitySet="Modules">
+                <ScalarProperty Name="IsShareableViewOnly" ColumnName="IsShareableViewOnly" />
+                <ScalarProperty Name="IsShareable" ColumnName="IsShareable" />
+                <ScalarProperty Name="LastContentModifiedOnDate" ColumnName="LastContentModifiedOnDate" />
+                <ScalarProperty Name="ContentItemID" ColumnName="ContentItemID" />
+                <ScalarProperty Name="LastModifiedOnDate" ColumnName="LastModifiedOnDate" />
+                <ScalarProperty Name="LastModifiedByUserID" ColumnName="LastModifiedByUserID" />
+                <ScalarProperty Name="CreatedOnDate" ColumnName="CreatedOnDate" />
+                <ScalarProperty Name="CreatedByUserID" ColumnName="CreatedByUserID" />
+                <ScalarProperty Name="PortalID" ColumnName="PortalID" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="InheritViewPermissions" ColumnName="InheritViewPermissions" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="AllTabs" ColumnName="AllTabs" />
+                <ScalarProperty Name="ModuleDefID" ColumnName="ModuleDefID" />
+                <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Geeltjes">
+        <EntityTypeShape EntityType="GeeltjesModel.Icatt_Geeltjes_Geeltje" Width="1.5" PointX="0.75" PointY="0.75" Height="2.7494921874999996" />
+        <EntityTypeShape EntityType="GeeltjesModel.Icatt_Geeltjes_UserGeeltje" Width="1.5" PointX="3.125" PointY="0.5" Height="2.172587890625" />
+        <EntityTypeShape EntityType="GeeltjesModel.Users" Width="1.5" PointX="7.375" PointY="0.75" Height="3.9033007812499996" />
+        <AssociationConnector Association="GeeltjesModel.Icatt_Geeltjes_GeeltjeIcatt_Geeltjes_UserGeeltje">
+          <ConnectorPoint PointX="2.25" PointY="1.8074446614583328" />
+          <ConnectorPoint PointX="3.125" PointY="1.8074446614583328" />
+        </AssociationConnector>
+        <AssociationConnector Association="GeeltjesModel.UsersIcatt_Geeltjes_UserGeeltje">
+          <ConnectorPoint PointX="7.375" PointY="1.8074446614583328" />
+          <ConnectorPoint PointX="4.625" PointY="1.8074446614583328" />
+        </AssociationConnector>
+        <AssociationConnector Association="GeeltjesModel.UsersIcatt_Geeltjes_Geeltje">
+          <ConnectorPoint PointX="7.375" PointY="3.3074446614583328" />
+          <ConnectorPoint PointX="2.25" PointY="3.3074446614583328" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="GeeltjesModel.Modules" Width="1.5" PointX="3.375" PointY="3.75" Height="3.5186979166666656" />
+        <AssociationConnector Association="GeeltjesModel.FK_Icatt_Geeltjes_Geeltje_Modules">
+          <ConnectorPoint PointX="3.375" PointY="4.0093489583333328" />
+          <ConnectorPoint PointX="2.25" PointY="4.0093489583333328" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
